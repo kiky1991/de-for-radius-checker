@@ -1,3 +1,27 @@
+jQuery(function ($) {
+    jQuery(document).ready(function ($) {
+    })
+
+    $('#derc-check-address').on('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: derc.url,
+            data: {
+                q: $('#derc-address').val(),
+                action: 'derc_check_address',
+                derc_check_address_nonce: derc.nonce.check_address
+            },
+            success: function (response) {
+                if (response.success === true) {
+                    window.open(response.data.redirect, '_blank');
+                } else {
+                    console.log(response.message) // failed search
+                }
+            }
+        })
+    })
+})
+
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 11,

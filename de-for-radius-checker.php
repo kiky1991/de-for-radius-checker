@@ -23,6 +23,9 @@ define('DERC_PLUGIN_URI', plugins_url(basename(plugin_dir_path(__FILE__)), basen
 require_once DERC_PLUGIN_PATH . 'autoload.php';
 require_once DERC_PLUGIN_PATH . 'vendor/autoload.php';
 
+// load API
+require_once DERC_PLUGIN_PATH . 'classes/api/openstreetmap.org.php';
+
 if (!class_exists('DERC')) {
 
     class DERC
@@ -31,6 +34,8 @@ if (!class_exists('DERC')) {
         {
             new DERC_Front();
             new DERC_Admin();
+            new DERC_Cli();
+            new DERC_Ajax();
 
             register_activation_hook(__FILE__, array($this, 'on_plugin_activation'));
             add_action('plugins_loaded', array($this, 'on_plugin_loaded'));

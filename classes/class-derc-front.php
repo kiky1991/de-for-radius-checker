@@ -35,11 +35,20 @@ if (!class_exists('DERC_Front')) {
         public function radius_checker()
         {
             // only load script in shortcode page
+            // wp_enqueue_script('derc-geoxml');
+            // wp_enqueue_script('derc-gmaps');
+            // wp_enqueue_script('derc-leaflet');
             wp_enqueue_script('derc-front');
-            wp_enqueue_script('derc-geoxml');
-            wp_enqueue_script('derc-gmaps');
-            // wp_enqueue_script('derc-gmaps-ssl');
-            wp_enqueue_script('derc-leaflet');
+            wp_localize_script(
+                'derc-front',
+                'derc',
+                array(
+                    'url'   => admin_url('admin-ajax.php'),
+                    'nonce' => array(
+                        'check_address' => wp_create_nonce('derc-check-address-nonce'),
+                    )
+                )
+            );
 
             include_once DERC_PLUGIN_PATH . 'views/front-radius-checker.php';
         }

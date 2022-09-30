@@ -19,7 +19,7 @@
 <div class="derc-front">
     <div class="derc-row">
         <label for="derc-address"><?php esc_html_e('Insert your address:', 'derc'); ?></label>
-        <input type="text" name="address" id="derc-address" value="bandung">
+        <input type="text" name="address" id="derc-address" value="">
     </div>
     <div class="derc-row">
         <input type="button" value="Check Address" id="derc-check-address">
